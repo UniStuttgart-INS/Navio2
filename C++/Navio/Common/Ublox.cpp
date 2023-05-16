@@ -347,9 +347,9 @@ int Ublox::testConnection()
     return 0;
 }
 
-int Ublox::configureSolutionRate(std::uint16_t meas_rate,
-                           std::uint16_t nav_rate,
-                           std::uint16_t timeref)
+int Ublox::configureSolutionRate(uint16_t meas_rate,
+                           uint16_t nav_rate,
+                           uint16_t timeref)
 {
     CfgNavRate msg;
     msg.measure_rate = meas_rate;
@@ -359,7 +359,7 @@ int Ublox::configureSolutionRate(std::uint16_t meas_rate,
     _sendMessage(CLASS_CFG, MSG_CFG_RATE, &msg, sizeof(CfgNavRate));
 }
 
-int Ublox::_sendMessage(std::uint8_t msg_class, std::uint8_t msg_id, void *msg, std::uint16_t size)
+int Ublox::_sendMessage(uint8_t msg_class, uint8_t msg_id, void *msg, uint16_t size)
 {
     unsigned char buffer[UBX_BUFFER_LENGTH];
 

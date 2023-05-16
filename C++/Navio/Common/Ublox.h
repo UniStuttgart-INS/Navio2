@@ -114,17 +114,17 @@ private:
     };
 
     struct PACKED CfgNavRate {
-        std::uint16_t measure_rate;
-        std::uint16_t nav_rate;
-        std::uint16_t timeref;
+        uint16_t measure_rate;
+        uint16_t nav_rate;
+        uint16_t timeref;
     };
 
     struct PACKED UbxHeader {
-        std::uint8_t preamble1;
-        std::uint8_t preamble2;
-        std::uint8_t msg_class;
-        std::uint8_t msg_id;
-        std::uint16_t length;
+        uint8_t preamble1;
+        uint8_t preamble2;
+        uint8_t msg_class;
+        uint8_t msg_id;
+        uint16_t length;
     };
 
     struct PACKED CheckSum {
@@ -134,7 +134,7 @@ private:
 
     std::string spi_device_name;
     UBXScanner* scanner;
-    UBXParser* parser;   
+    UBXParser* parser;
 
 public:
     Ublox(std::string name = "/dev/spidev0.0");
@@ -142,14 +142,14 @@ public:
     int enableNAV_POSLLH();
     int enableNAV_STATUS();
     int testConnection();
-    int configureSolutionRate(std::uint16_t meas_rate,
-                              std::uint16_t nav_rate = 1,
-                              std::uint16_t timeref = 0);
+    int configureSolutionRate(uint16_t meas_rate,
+                              uint16_t nav_rate = 1,
+                              uint16_t timeref = 0);
     int decodeMessages();
     int decodeSingleMessage(message_t msg, std::vector<double>& position_data);
 
 private:
-    int _sendMessage(std::uint8_t msg_class, std::uint8_t msg_id, void *msg, std::uint16_t size);
+    int _sendMessage(uint8_t msg_class, uint8_t msg_id, void *msg, uint16_t size);
     int _spliceMemory(unsigned char *dest, const void * const src, size_t size, int dest_offset = 0);
     CheckSum _calculateCheckSum(unsigned char message[], std::size_t size);
 }; // end of ublox class def
